@@ -15,12 +15,39 @@
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
+	<properties>
+		<shadingManagerScope>provided</shadingManagerScope>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<createSourcesJar>false</createSourcesJar>
+					<minimizeJar>false</minimizeJar>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.ulfric.plugin</groupId>
 			<artifactId>plugin</artifactId>
 			<version>1.0.0</version>
-			<scope>provided</scope>
+			<scope>${shadingManagerScope}</scope>
 		</dependency>
 	</dependencies>
 
